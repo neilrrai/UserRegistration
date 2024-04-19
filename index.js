@@ -40,7 +40,12 @@ function displayUserOnScreen(userDetails) {
 
   deleteBtn.addEventListener("click", function (event) {
     userList.removeChild(event.target.parentElement);
-    localStorage.removeItem(userDetails.email);
+    axios
+      .delete(
+        `https://crudcrud.com/api/fb651f7db8794cc89b6bdf9bc2cd1622/appointmentData/${userDetails._id}`
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   });
 
   editBtn.addEventListener("click", function (event) {
