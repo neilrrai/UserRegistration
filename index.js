@@ -51,3 +51,15 @@ function displayUserOnScreen(userDetails) {
     document.getElementById("phone").value = userDetails.phone;
   });
 }
+window.addEventListener("DOMContentLoaded", () => {
+  axios
+    .get(
+      "https://crudcrud.com/api/fb651f7db8794cc89b6bdf9bc2cd1622/appointmentData"
+    )
+    .then((res) => {
+      for (let i = 0; i < res.data.length; i++) {
+        displayUserOnScreen(res.data[i]);
+      }
+    })
+    .catch((err) => console.log(err));
+});
