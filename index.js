@@ -7,7 +7,7 @@ function handleFormSubmit(event) {
   };
   axios
     .post(
-      "https://crudcrud.com/api/fb651f7db8794cc89b6bdf9bc2cd1622/appointmentData",
+      "https://crudcrud.com/api/6ab63387fc2341ce866b3387454a2999/appointmentData",
       userDetails
     )
     .then((response) => displayUserOnScreen(response.data))
@@ -18,9 +18,10 @@ function handleFormSubmit(event) {
   document.getElementById("email").value = "";
   document.getElementById("phone").value = "";
 }
-
+// function to display the data on screen
 function displayUserOnScreen(userDetails) {
   const userItem = document.createElement("li");
+  userItem.classList = "list-group-item";
   userItem.appendChild(
     document.createTextNode(
       `${userDetails.username} - ${userDetails.email} - ${userDetails.phone}`
@@ -28,10 +29,12 @@ function displayUserOnScreen(userDetails) {
   );
 
   const deleteBtn = document.createElement("button");
+  deleteBtn.classList = "btn btn-outline-info";
   deleteBtn.appendChild(document.createTextNode("Delete"));
   userItem.appendChild(deleteBtn);
 
   const editBtn = document.createElement("button");
+  editBtn.classList = "btn btn-outline-info";
   editBtn.appendChild(document.createTextNode("Edit"));
   userItem.appendChild(editBtn);
 
@@ -42,7 +45,7 @@ function displayUserOnScreen(userDetails) {
     userList.removeChild(event.target.parentElement);
     axios
       .delete(
-        `https://crudcrud.com/api/fb651f7db8794cc89b6bdf9bc2cd1622/appointmentData/${userDetails._id}`
+        `https://crudcrud.com/api/6ab63387fc2341ce866b3387454a2999/appointmentData/${userDetails._id}`
       )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
@@ -53,7 +56,7 @@ function displayUserOnScreen(userDetails) {
     // localStorage.removeItem(userDetails.email);
     axios
       .delete(
-        `https://crudcrud.com/api/fb651f7db8794cc89b6bdf9bc2cd1622/appointmentData/${userDetails._id}`
+        `https://crudcrud.com/api/6ab63387fc2341ce866b3387454a2999/appointmentData/${userDetails._id}`
       )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
@@ -66,7 +69,7 @@ function displayUserOnScreen(userDetails) {
 window.addEventListener("DOMContentLoaded", () => {
   axios
     .get(
-      "https://crudcrud.com/api/fb651f7db8794cc89b6bdf9bc2cd1622/appointmentData"
+      "https://crudcrud.com/api/6ab63387fc2341ce866b3387454a2999/appointmentData"
     )
     .then((res) => {
       for (let i = 0; i < res.data.length; i++) {
